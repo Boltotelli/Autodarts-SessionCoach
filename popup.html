@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Autodarts Session Coach</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="popup">
+    <header class="popup-header">
+      <div>
+        <h1>Session Coach</h1>
+        <p>Leg-based match coach and live overlay for play.autodarts.io</p>
+      </div>
+      <button id="openCoachPage" class="ghost-btn" type="button">Open coach page</button>
+    </header>
+
+    <section class="panel">
+      <label class="switch-row">
+        <span>Enable overlay</span>
+        <input id="enabled" type="checkbox">
+      </label>
+
+      <label class="switch-row">
+        <span>Compact overlay</span>
+        <input id="overlayCompact" type="checkbox">
+      </label>
+
+      <label class="field">
+        <span>Overlay visibility</span>
+        <select id="overlayVisibilityMode">
+          <option value="match-only">Only in matches</option>
+          <option value="always">Always visible</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Overlay position</span>
+        <select id="overlayPosition">
+          <option value="auto">Auto dock</option>
+          <option value="top-right">Top right</option>
+          <option value="top-left">Top left</option>
+          <option value="bottom-right">Bottom right</option>
+          <option value="bottom-left">Bottom left</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Tracked player name</span>
+        <input id="trackedPlayerName" type="text" placeholder="Optional, e.g. Boltotelli">
+        <small>Useful if Autodarts data does not clearly mark your player yet.</small>
+      </label>
+    </section>
+
+    <section class="panel">
+      <h2>Default leg targets</h2>
+      <div class="preset-row">
+        <button class="preset-btn" data-preset="starter" type="button">Starter</button>
+        <button class="preset-btn" data-preset="solid" type="button">Solid</button>
+        <button class="preset-btn" data-preset="push" type="button">Push</button>
+      </div>
+
+      <div class="field-grid">
+        <label class="field">
+          <span>Average over</span>
+          <input id="averageOver" type="number" step="0.1" min="0">
+        </label>
+
+        <label class="field">
+          <span>First 9 over</span>
+          <input id="first9Over" type="number" step="0.1" min="0">
+        </label>
+
+        <label class="field">
+          <span>Checkout darts under</span>
+          <input id="checkoutDartsUnder" type="number" step="0.1" min="0">
+        </label>
+
+        <label class="field">
+          <span>Max busts</span>
+          <input id="maxBusts" type="number" step="1" min="0">
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="saveBtn" class="primary-btn" type="button">Save settings</button>
+        <button id="resetBtn" class="ghost-btn" type="button">Reset defaults</button>
+      </div>
+      <p id="statusText" class="status-text"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Notes</h2>
+      <ul class="notes">
+        <li>The extension now tracks each match and scores goals per leg.</li>
+        <li>Coach history lives in <code>chrome.storage.local</code>.</li>
+        <li>The live overlay can now be dragged directly on the play page.</li>
+        <li>Live parsing uses a generic WebSocket adapter, so the first test on your setup is important.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
